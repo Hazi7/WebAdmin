@@ -332,3 +332,102 @@ function foodsSearchOrder() {
         }
     });
 }
+
+
+function foodChange() {
+    var a = document.getElementsByClassName("foods-order-checkbox");
+    var c = document.getElementById("food-change-information");
+    var sidebar = document.getElementById("sidebar");
+    var container = document.getElementById("container");
+    var b = document.getElementsByClassName("food-change-input");
+
+
+    for (let i = 0; i < a.length; i++) {
+        var flag = a[i].checked;
+        console.log(orderFlagNum);
+        if (flag == true) {
+            orderFlagNum++;
+        }
+        
+    }
+    let confirmButton = document.getElementById("food-confirm-button"); // 增加界面按钮
+
+    confirmButton.setAttribute("onclick","foodConfirm()");
+
+    if(orderFlagNum == 1) {
+        c.style.opacity = "1";
+        c.style.zIndex = "9";
+        sidebar.style.filter = "blur(12px)";
+        container.style.filter = "blur(12px)";
+    } else if(orderFlagNum < 1){
+        alert("请至少选择一个");
+    } else {
+        alert("请不要多选")
+        orderFlagNum = 0;
+    }
+
+    console.log(orderFlagNum);
+}
+
+
+
+
+
+
+function foodConfirm() {
+    var a = document.getElementsByClassName("foods-order-checkbox");
+    var b = document.getElementsByClassName("food-change-input");
+
+    var foodcChangeName = b[0].value;
+    var Changeprice = b[1].value;
+    var Changedesc = b[2].value;
+    var Changetypename = b[3].value;
+    var Changetypeid = b[4].options[b[4].selectedIndex].value;
+    
+    for (let i = 0; i < a.length; i++) {
+        var flag = a[i].checked;
+        if (flag == true) {
+            foodId = a[i].name;
+            break;
+        }
+        
+    }
+
+
+    $.ajax({
+        url: "http://118.195.129.130:3000/food/update",
+        type: "POST",
+        data: {
+            name: foodcChangeName,
+            price: Changeprice,
+            desc: Changedesc,
+            typename: Changetypename,
+            typeid: Changetypeid,
+            _id: foodId,
+
+        }, 
+        dataType: "json",
+        success: function (result) {
+
+            console.log(result);
+
+        },
+        error: function () {
+            console.log('Send Request Fail..');
+        }
+    });
+
+
+    var c = document.getElementById("food-change-information");
+
+    c.style.opacity = "0";
+    c.style.zIndex = "-1";
+    orderFlagNum = 0;
+
+    setTimeout(function(){
+        
+    },100);
+
+    sidebar.style.filter = "blur(0px)";
+    container.style.filter = "blur(0px)";
+}
