@@ -1,0 +1,230 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cfd3d5;
+}
+#root #silder {
+  height: 450px;
+  width: 900px;
+  display: flex;
+  overflow: hidden;
+}
+
+#container {
+  display: flex;
+  position: relative;
+  right: 100px;
+  border-radius: 1px;
+  transition: all 0.5s ease-in-out;
+}
+#container #word-container {
+  height: 450px;
+  width: 300px;
+  background-color: #e8ecf0;
+  -webkit-clip-path: polygon(0 0, 300px 0, 150px 450px, 0px 450px);
+          clip-path: polygon(0 0, 300px 0, 150px 450px, 0px 450px);
+  position: relative;
+  left: 150px;
+}
+#container #word-container #back {
+  width: 120px;
+  cursor: pointer;
+  height: 120px;
+  background-color: rgba(219, 219, 219, 0.562);
+  position: absolute;
+  left: 0;
+  -webkit-clip-path: polygon(0 0, 60% 0, 0 100%);
+          clip-path: polygon(0 0, 60% 0, 0 100%);
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 2px;
+  border-color: transparent;
+  background-color: rgb(195, 205, 212);
+  z-index: 9;
+  transition: all 0.5s ease-in-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#container #word-container #back:hover {
+  cursor: pointer;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #818889;
+}
+#container span {
+  position: absolute;
+  font-size: 80px;
+  -webkit-text-stroke: 2px silver;
+  color: transparent;
+  writing-mode: vertical-rl;
+  top: 80px;
+  left: 50px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#container #form-container {
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+  width: 600px;
+  background-color: #dde4eb;
+  align-items: center;
+  -webkit-clip-path: polygon(150px 0, 600px 0, 600px 450px, 0px 450px);
+          clip-path: polygon(150px 0, 600px 0, 600px 450px, 0px 450px);
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#container #form-container #register {
+  width: 120px;
+  height: 50px;
+  box-sizing: border-box;
+  background-color: white;
+  position: absolute;
+  top: 300px;
+  left: 270px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#container #form-container #register:hover {
+  border: 1px #818889 solid;
+}
+#container #form-container .post {
+  width: 110px;
+  box-sizing: border-box;
+  height: 50px;
+  background-color: white;
+  position: absolute;
+  top: 240px;
+  right: 119px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#container #form-container .post:hover {
+  border: 1px #818889 solid;
+}
+#container #form-container #login-button {
+  position: relative;
+  top: 200px;
+}
+#container #form-container #login-button svg {
+  position: absolute;
+  left: 50px;
+  top: 0px;
+}
+#container #form-container #login-button #login-button-son {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100px;
+  position: relative;
+  left: 25px;
+  background-color: white;
+  border-radius: 1px;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  z-index: 99;
+}
+#container #form-container #login-button:hover svg {
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+#container #form-container #login-button:hover #login-button-son {
+  opacity: 1;
+}
+#container #form-container .register-input:nth-child(2) {
+  top: 130px !important;
+}
+#container #form-container .register-input:nth-child(3) {
+  top: 140px !important;
+  width: 30%;
+  left: -30px;
+}
+#container #form-container .input-container {
+  height: 50px;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: 120px;
+  background-color: white;
+  border-radius: 1px;
+  left: 30px;
+}
+#container #form-container .input-container svg {
+  margin-left: 10px;
+}
+#container #form-container .input-container:nth-child(2) {
+  top: 180px;
+}
+#container #form-container .input-container .input {
+  height: 100%;
+  width: 90%;
+  margin-left: 20px;
+  border-color: #3b5d61;
+  position: relative;
+  border-width: 0;
+  border-radius: 0;
+  outline: none;
+  border-radius: 0 5px 5px 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#container #form-container .input-container .input::-webkit-input-placeholder {
+  color: #818889;
+  opacity: 0.5;
+}
+#container #form-container #button {
+  box-sizing: border-box;
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-style: solid;
+  border-width: 2px;
+  border-color: transparent;
+  background-color: rgb(195, 205, 212);
+  z-index: 9;
+  -webkit-clip-path: polygon(120px 0, 120px 120px, 0 120px);
+          clip-path: polygon(120px 0, 120px 120px, 0 120px);
+  transition: all 0.5s ease-in-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#container #form-container #button:hover {
+  cursor: pointer;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #818889;
+}
+#container #form-container #button:hover svg {
+  transform: rotate(360deg);
+}
+#container #form-container #button svg {
+  color: red;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  transition: all 0.5s ease-in-out;
+}/*# sourceMappingURL=LogCss.css.map */
