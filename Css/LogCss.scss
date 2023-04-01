@@ -65,7 +65,7 @@
 
 
         #register {
-
+            position: relative;
         }
 
     
@@ -96,13 +96,13 @@
 
 
         #register {
-            width: 120px;
+            width: 160px;
             height: 50px;
             box-sizing: border-box;
             background-color: white;
             position: absolute;
-            top: 300px;
-            left: 270px;
+            top: 320px;
+            left: 250px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -119,7 +119,7 @@
             height: 50px;
             background-color: white;
             position: absolute;
-            top: 240px;
+            top: 260px;
             right: 119px;
             display: flex;
             justify-content: center;
@@ -173,12 +173,21 @@
 
         .register-input {
 
+            &:nth-child(1) {
+                top: 80px !important;
+            }
+
             &:nth-child(2) {
-                top: 130px !important;
+                top: 90px !important;
             }
 
             &:nth-child(3) {
-                top: 140px !important;
+                top: 100px !important;
+
+            }
+
+            &:nth-child(4) {
+                top: 110px !important;
                 width: 30%;
                 left: -30px;
             }

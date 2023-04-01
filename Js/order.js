@@ -2,12 +2,46 @@
 var pageNum = 1;
 var pointerNum = 0;
 
-function pageShow() {
+function realOrderPageShow() {
+    var option = document.getElementsByClassName("order-change-input")[0];
+    var userArray = new Array();
+
+
+$.ajax({
+    url: "http://118.195.129.130:3000/users/getInfoByKw_users",
+    type: "POST",
+    data: {kw: ""}, 
+    dataType: "json",
+    async: false,
+    success: function (result) {
+        console.log(result);
+
+        for (let j = 0; j < result.data.length; j++) {
+            tempNum = result.data[j].us;
+            console.log(result.data[j].us);
+            userArray.push(tempNum);
+        }
+
+
+        for (let i = 0; i < userArray.length; i++) {
+            option.options.add(new Option(userArray[i]));
+        }
+
+    },
+    error: function () {
+        console.log('Send Request Fail..');
+    }
+});
+
+
+
+
     $.ajax({
         url: "http://118.195.129.130:3000/order/getInfoByPage_order",
         type: "POST",
         data: {page: pageNum, per_page: 4}, 
         dataType: "json",
+        async: false,
         success: function (result) {
 
             length = result.data.length;
@@ -68,12 +102,14 @@ function writeInformation(a,b,func) {
     } else {
         a[3].innerHTML = "未知";
     }
+    a[4].innerHTML = arrResult[b].updatedAt;
+    
 }
 
-pageShow();
+realOrderPageShow();
 
 
-function changePage(num) {
+function realOrderchangePage(num) {
 
     pointerNum = 0;
     pageNum += num;
@@ -82,7 +118,7 @@ function changePage(num) {
     } else if(pageNum > orderTotalNum) {
         pageNum = 1;
     }
-    pageShow();
+    realOrderPageShow();
 
     //更改显示页数的数字
     var pageNumber = document.getElementsByClassName("order-button");
@@ -153,7 +189,7 @@ function jumpPage(u) {
         pageNumber[1].style.display = "flex";
     }
 
-    pageShow();
+    realOrderPageShow();
 
     
 }
@@ -226,7 +262,14 @@ function orderConfirm() {
         dataType: "json",
         success: function (result) {
 
-            console.log(result);
+            if (result.err == 0) {
+                addOperationBingo();
+                orderCloseMenu();
+                pointerNum = 0;
+                realOrderPageShow();
+            } else if (result.err == -1) {
+                addperationWrong();
+            }
 
         },
         error: function () {
@@ -241,9 +284,6 @@ function orderConfirm() {
     c.style.zIndex = "-1";
     orderFlagNum = 0;
 
-    setTimeout(function(){
-        location.reload();
-    },100);
 
     sidebar.style.filter = "blur(0px)";
     container.style.filter = "blur(0px)";
@@ -254,8 +294,6 @@ function orderConfirm() {
 function orderChange() {
     var a = document.getElementsByClassName("order-checkbox");
     var c = document.getElementById("order-change-information");
-    var sidebar = document.getElementById("sidebar");
-    var container = document.getElementById("container");
     var b = document.getElementsByClassName("order-change-input");
 
 
@@ -272,14 +310,26 @@ function orderChange() {
     confirmButton.setAttribute("onclick","orderConfirm()");
 
     if(orderFlagNum == 1) {
+        let mask = document.getElementById("mask");
+        mask.style.opacity = "1";
+        mask.style.zIndex = "9";
         c.style.opacity = "1";
         c.style.zIndex = "9";
-        sidebar.style.filter = "blur(12px)";
-        container.style.filter = "blur(12px)";
+        
     } else if(orderFlagNum < 1){
-        alert("请至少选择一个");
+        let alert = document.getElementsByClassName("alert");
+        alert[0].style.zIndex = "9";
+        alert[0].style.opacity = "1";
+        let alertContainer = document.getElementById("remove-alert");
+        alertContainer.classList.add("success");
+        alertContainer.getElementsByTagName("p")[0].innerText = "请至少选择一个";
     } else {
-        alert("请不要多选")
+        let alert = document.getElementsByClassName("alert");
+        alert[0].style.zIndex = "9";
+        alert[0].style.opacity = "1";
+        let alertContainer = document.getElementById("remove-alert");
+        alertContainer.classList.add("success");
+        alertContainer.getElementsByTagName("p")[0].innerText = "请不要多选";
         orderFlagNum = 0;
     }
 
@@ -293,14 +343,21 @@ function orderCloseMenu() {
     c.style.zIndex = "-1";
     orderFlagNum = 0;
 
-    sidebar.style.filter = "blur(0px)";
-    container.style.filter = "blur(0px)";
+    let mask = document.getElementById("mask");
+    mask.style.opacity = "0";
+    mask.style.zIndex = "-1";
 }
 
 
 
 function remove1() {
 
+    confirmDeleteButton("deleteOperation()");
+
+}
+
+
+let deleteOperation = () =>  {
     var a = document.getElementsByClassName("order-checkbox");
     var array = new Array();
 
@@ -321,7 +378,14 @@ function remove1() {
             dataType: "json",
             success: function (result) {
                 
-    
+                if (result.err == 0) {
+                    pointerNum = 0;
+                    realOrderPageShow();
+                    addOperationBingo();
+                } else if (result.err == -1) {
+                    addperationWrong();
+                }
+                
             },
             error: function () {
                 console.log('Send Request Fail..');
@@ -329,13 +393,6 @@ function remove1() {
         });
 
     }
-
-    setTimeout(function() {
-        location.reload();
-    },100);
-
-
-
 }
 
 
@@ -346,22 +403,25 @@ function addOrder() {
     let inputAdd = document.getElementsByClassName("order-change-input"); // 增加界面输入框
     let confirmButton = document.getElementById("order-confirm-button"); // 增加界面按钮
 
+
     confirmButton.setAttribute("onclick","addOrderConfirm()")
+    let mask = document.getElementById("mask");
+    mask.style.opacity = "1";
+    mask.style.zIndex = "8";
 
     orderInformation.style.opacity = "1";
     orderInformation.style.zIndex = "9";
-    sidebar.style.filter = "blur(12px)";
-    container.style.filter = "blur(12px)";
 
 }
 
 function addOrderConfirm() {
     
     var b = document.getElementsByClassName("order-change-input");
-
+    if (/^1[3-9]\d{9}$/.test(b[2].value) == true && /(^[1-9]\d*$)/.test(b[1].value) == true){
+        orderMoney = b[1].value;
+        orderUserPhone = b[2].value;
+    }
     orderUserName = b[0].value;
-    orderMoney = b[1].value;
-    orderUserPhone = b[2].value;
     userPay = b[3].options[b[3].selectedIndex].value;
     
     if(userPay == "已支付") {
@@ -383,8 +443,14 @@ function addOrderConfirm() {
         }, 
         dataType: "json",
         success: function (result) {
-
             console.log(result);
+            if (result.err == 0) {
+                addOperationBingo();
+                pointerNum = 0;
+                realOrderPageShow();
+            } else if (result.err == -1) {
+                addperationWrong();
+            }
 
         },
         error: function () {
@@ -393,9 +459,6 @@ function addOrderConfirm() {
     });
 
     orderCloseMenu();
-    setTimeout(function() {
-        location.reload();
-    },100);
 }
 
 
@@ -440,6 +503,9 @@ function searchOrder() {
         }
     });
 }
+
+
+
 
 
 

@@ -3,7 +3,7 @@ var page = 1;
 var i = 0;
 
 
-function search() {
+function userShow() {
 
     $.ajax({
         url: "http://118.195.129.130:3000/users/getInfoByPage_users",
@@ -40,7 +40,7 @@ function search() {
     });
 }
 
-search();
+userShow();
 
 
 
@@ -74,7 +74,7 @@ function button(num) {
         page = 1;
     }
     console.log(page);
-    search();
+    userShow();
     document.getElementById("input-search").value = "";
     
 }

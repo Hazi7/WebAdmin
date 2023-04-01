@@ -1,4 +1,4 @@
-var input = document.getElementsByClassName("input");
+let input = document.getElementsByClassName("input");
 
     function login() {
         var userName = input[0].value;
@@ -17,7 +17,18 @@ var input = document.getElementsByClassName("input");
                 success: function (result) {
                     console.log(result);
                     if(result.err == 0) {
-                        location.href = "Manage.html?"+'txt=' + encodeURI(userName);
+                        window.location.href = "Admin.html";
+                        
+                        sessionStorage.setItem("integral",result.data[0].integral);
+                        sessionStorage.setItem("status",1);
+                        sessionStorage.setItem("userName",result.data[0].us);
+                        sessionStorage.setItem("userPassword","******");
+                        sessionStorage.setItem("userPhone",result.data[0].phone);
+                        sessionStorage.setItem("userAge",result.data[0].age);
+                        sessionStorage.setItem("userSex",result.data[0].sex);
+                        localStorage.setItem("styleFlag",0);
+
+                        
                     } else if(result.err == -1 && result.msg == "用户名或密码不正确") {
                         logoWord.innerHTML = "WRONG";
                         logoWord.style.webkitTextStrokeColor = "#6f66b0";
@@ -60,6 +71,30 @@ var input = document.getElementsByClassName("input");
         register.style.transform = "translateX(0%)";
         login.style.transform = "translateX(0%)";
     }
+
+    let time = 60;
+    let count = 0;
+    let post = document.getElementsByClassName("post")[0];
+    let setTime = () => {
+        let interval = setInterval(function() {
+            post.innerHTML = time;
+            time = time - 1;
+            count++;
+
+            if (count >= 60) {
+                clearInterval(interval);
+                post.style.pointerEvents = "initial";
+                post.style.backgroundColor = "white";
+                count = 0;
+            }
+        },1000);
+        post.style.backgroundColor = "gray";
+        post.style.opacity = "0.5";
+        post.style.pointerEvents = "none";
+        post.innerHTML = "发送验证码";
+
+
+    };
 
 
 

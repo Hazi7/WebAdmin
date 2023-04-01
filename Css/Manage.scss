@@ -1,161 +1,5 @@
-$iceColor: #e8ecf0;
 
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
-#root {
-    height: 100vh;
-    display: flex;
-    flex-basis: 100%;
-
-    #sidebar {
-        height: 100vh;
-        flex-grow: 1;
-        background-color: $iceColor;
-        position: relative;
-
-        #sidebar-content {
-            width: 90%;
-            height: 95%;
-            min-width: 190px;
-            position: relative;
-            background-color: rgba(253, 253, 253, 0.681);
-            z-index: 9;
-            top: 2%;
-            left: 5%;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            svg {
-                z-index: 120;
-                position: absolute;
-                top: 5%;
-                left: 5%;
-            }
-
-            span {
-                position: relative;
-                font-size: 80px;
-                -webkit-text-stroke: 2px silver;
-                color: transparent;
-                writing-mode: vertical-rl;
-                opacity: 0.5;
-                user-select: none;
-            }
-
-
-            #select-content {
-                width: 90%;
-                position: absolute;
-                
-                
-                .select {
-                    height: 50px;
-                    width: 100%;
-                    border-width: 1px;
-                    border-style: solid;
-                    margin-bottom: 2px;
-                    border-color: #c2c1c1;
-                    border-radius: 5px;
-                    transition: all 0.5s ease-in-out;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #5f5f5f;
-
-                    &:hover {
-                        cursor: pointer;
-                        background-color: #d0d0d0;
-                        color: #070707;
-                    }
-                }
-            }
-        }
-    }
-
-    #container {
-        height: 100%;
-        flex-grow: 6;
-        background-color: $iceColor;
-
-        #banner {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            position: relative;
-
-            span {
-                display: inline-block;
-                font-size: 18px;
-                color: rgb(80, 79, 79);
-                position: relative;
-                left: 5px;
-                bottom: 4px;
-            }
-
-            #user {
-                position: absolute;
-                right: 100px;
-                user-select: none;
-                width: 150px;
-                height: 50px;
-                cursor: pointer;
-
-                svg {
-                    
-                    &:nth-of-type(2) {
-                        margin-left: 10px;
-                    }
-                }
-
-                p {
-                    display: inline-block;
-                    font-size: 14px;
-                    color: rgb(80, 79, 79);
-                    position: relative;
-                    bottom: 6px;
-                    left: 5px;
-                }
-            }
-
-            #menu {
-                width: 115px;
-                height: 50px;
-                position: absolute;
-                right: 135px;
-                box-sizing: border-box;
-                top: 60px;
-                background-color: #ffffff;
-                border-radius: 3px;
-                opacity: 0;
-                transition: all 0.5s ease-in-out;
- 
-
-                .menu-information {
-                    height: 50%;
-                    
-                    display: flex;
-                    justify-content: center;
-                    border: 1px #cacaca solid;
-                    cursor: pointer;
-
-                    &:hover {
-                        border: 2px #8396a8 solid;
-                    }
-                }
-            }
-            
-
-
-
-        }
-
-        #content {
+        .control-page  {
             background-color: white;
             height: calc(100% - 100px);
             border-radius: 5px;
@@ -355,9 +199,17 @@ $iceColor: #e8ecf0;
                     .button {
                         width: 20px;
                         height: 20px;
-                        background-color: #1890ff;
+                        box-sizing: border-box;
+                        background-color: #7777776f;
                         margin-left: 5px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                         position: absolute;
+                        cursor: pointer;
+                        &:hover {
+                            border: 2px solid #1890ff;
+                        }
 
                         &:nth-child(1) {
                             right: 60px;
@@ -372,7 +224,6 @@ $iceColor: #e8ecf0;
             
 
         }
-    }
 
 
     #change-information {
@@ -434,4 +285,3 @@ $iceColor: #e8ecf0;
             }
         }
     }
-}

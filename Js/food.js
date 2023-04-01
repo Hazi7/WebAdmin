@@ -6,16 +6,16 @@ function foodPageShow() {
     $.ajax({
         url: "http://118.195.129.130:3000/food/getInfoByPage",
         type: "POST",
-        data: {page: pageNum, per_page: 6}, 
+        data: { page: pageNum, per_page: 6 },
         dataType: "json",
         success: function (result) {
 
             length = result.data.length;
             console.log(result);
-            
-            while(foodPointerNum < length) {
+
+            while (foodPointerNum < length) {
                 var contentWord1 = document.getElementsByClassName("foods-status" + foodPointerNum);
-                foodWriteInformation(contentWord1,foodPointerNum,result);
+                foodWriteInformation(contentWord1, foodPointerNum, result);
 
                 var input = document.getElementsByClassName("foods-order-checkbox");
                 input[foodPointerNum].name = result.data[foodPointerNum]._id;
@@ -23,9 +23,9 @@ function foodPageShow() {
                 foodPointerNum++;
             }
 
-            
 
-            while(foodPointerNum >= length && foodPointerNum < 6) {
+
+            while (foodPointerNum >= length && foodPointerNum < 6) {
                 var contentWord1 = document.getElementsByClassName("foods-status" + foodPointerNum);
                 contentWord1[0].innerHTML = ""
                 contentWord1[1].innerHTML = ""
@@ -37,26 +37,26 @@ function foodPageShow() {
 
             }
 
-            
+
 
         },
         error: function () {
             console.log('Send Request Fail..');
         }
     });
-        
+
 }
 
 
 
-function foodWriteInformation(a,b,func) {
+function foodWriteInformation(a, b, func) {
     var arrResult = func.data;
     a[0].innerHTML = arrResult[b].name;
     a[1].innerHTML = arrResult[b].price + " $";
     a[2].innerHTML = arrResult[b].desc;
-    a[3].innerHTML= arrResult[b].typename;
-    a[4].innerHTML= arrResult[b].typeid;
-    
+    a[3].innerHTML = arrResult[b].typename;
+    a[4].innerHTML = arrResult[b].typeid;
+
 
 }
 
@@ -68,9 +68,9 @@ function foodChangePage(num) {
 
     foodPointerNum = 0;
     pageNum += num;
-    if(pageNum <= 0) {
+    if (pageNum <= 0) {
         pageNum = foodTotalNum;
-    } else if(pageNum > foodTotalNum) {
+    } else if (pageNum > foodTotalNum) {
         pageNum = 1;
     }
     foodPageShow();
@@ -78,7 +78,7 @@ function foodChangePage(num) {
     //更改显示页数的数字
     var pageNumber = document.getElementsByClassName("foods-order-button");
 
-    if(pageNum - 1 < 1) {
+    if (pageNum - 1 < 1) {
         pageNumber[1].innerHTML = pageNum;
         pageNumber[2].innerHTML = pageNum + 1;
         pageNumber[3].innerHTML = pageNum + 2;
@@ -86,8 +86,8 @@ function foodChangePage(num) {
         pageNumber[2].style.borderWidth = "0px";
         pageNumber[3].style.borderWidth = "0px";
         pageNumber[1].style.display = "flex";
-    } else if(pageNum + 1 > orderTotalNum) {
-        if(pageNum - 2 < 1) {
+    } else if (pageNum + 1 > orderTotalNum) {
+        if (pageNum - 2 < 1) {
             pageNumber[1].style.display = "none";
         }
         pageNumber[1].innerHTML = pageNum - 2;
@@ -118,7 +118,7 @@ function foodJumpPage(u) {
     pageNum = pageNumber[u].innerHTML;
 
 
-    if(pageNum - 1 < 1) {
+    if (pageNum - 1 < 1) {
         pageNumber[1].innerHTML = pageNum;
         pageNumber[2].innerHTML = pageNum + 1;
         pageNumber[3].innerHTML = pageNum + 2;
@@ -126,8 +126,8 @@ function foodJumpPage(u) {
         pageNumber[2].style.borderWidth = "0px";
         pageNumber[3].style.borderWidth = "0px";
         pageNumber[1].style.display = "flex";
-    } else if(pageNum + 1 > orderTotalNum) {
-        if(pageNum - 2 < 1) {
+    } else if (pageNum + 1 > orderTotalNum) {
+        if (pageNum - 2 < 1) {
             pageNumber[1].style.display = "none";
         }
         pageNumber[1].innerHTML = pageNum - 2;
@@ -148,19 +148,19 @@ function foodJumpPage(u) {
 
     foodPageShow();
 
-    
+
 }
 
 $.ajax({
     url: "http://118.195.129.130:3000/food/allpage",
     type: "GET",
-    data: {}, 
+    data: {},
     dataType: "json",
     success: function (result) {
 
         console.log(result);
         foodTotalNum = Math.ceil(result.pages / 6);
-        
+
 
     },
     error: function () {
@@ -189,15 +189,15 @@ function foodRemove() {
     }
 
     for (let i = 0; i < array.length; i++) {
-        
+
         $.ajax({
             url: "http://118.195.129.130:3000/food/del",
             type: "POST",
-            data: {_id: array[i]}, 
+            data: { _id: array[i] },
             dataType: "json",
             success: function (result) {
-                
-    
+
+
             },
             error: function () {
                 console.log('Send Request Fail..');
@@ -206,9 +206,9 @@ function foodRemove() {
 
     }
 
-    setTimeout(function() {
+    setTimeout(function () {
         Location.reload();
-    },100);
+    }, 100);
 
 
 
@@ -221,7 +221,7 @@ function foodAddOrder() {
     let inputAdd = document.getElementsByClassName("food-change-input"); // 增加界面输入框
     let confirmButton = document.getElementById("food-confirm-button"); // 增加界面按钮
 
-    confirmButton.setAttribute("onclick","foodsAddOrderConfirm()")
+    confirmButton.setAttribute("onclick", "foodsAddOrderConfirm()")
 
     orderInformation.style.opacity = "1";
     orderInformation.style.zIndex = "9";
@@ -231,7 +231,7 @@ function foodAddOrder() {
 }
 
 function foodsAddOrderConfirm() {
-    
+
     var foodConfirm = document.getElementsByClassName("food-change-input");
 
     foodName = foodConfirm[0].value;
@@ -240,8 +240,8 @@ function foodsAddOrderConfirm() {
     foodType = foodConfirm[3].value;
     foodId = foodConfirm[4].options[foodConfirm[4].selectedIndex].value;
     console.log(foodId);
-    
-    
+
+
 
 
     $.ajax({
@@ -253,7 +253,7 @@ function foodsAddOrderConfirm() {
             desc: foodDesc,
             typename: foodType,
             typeid: foodId,
-        }, 
+        },
         dataType: "json",
         success: function (result) {
 
@@ -264,13 +264,13 @@ function foodsAddOrderConfirm() {
             console.log('Send Request Fail..');
         }
     });
-    
+
 
     location.reload();
-    setTimeout(function() {
-        
+    setTimeout(function () {
+
         foodShow();
-    },100);
+    }, 100);
 }
 
 
@@ -299,23 +299,23 @@ function foodsSearchOrder() {
     $.ajax({
         url: "http://118.195.129.130:3000/food/getInfoByKw",
         type: "POST",
-        data: {kw: searchInput}, 
+        data: { kw: searchInput },
         dataType: "json",
         success: function (result) {
-            
+
             length = result.data.length;
-            
-            
-            while(orderNumButton < length) {
+
+
+            while (orderNumButton < length) {
                 var contentWord1 = document.getElementsByClassName("foods-status" + orderNumButton);
-                foodWriteInformation(contentWord1,orderNumButton,result);
+                foodWriteInformation(contentWord1, orderNumButton, result);
 
                 var input2 = document.getElementsByClassName("foods-order-checkbox");
                 input2[orderNumButton].name = result.data[orderNumButton]._id;
                 orderNumButton++;
             }
 
-            while(orderNumButton >= length && orderNumButton < 6) {
+            while (orderNumButton >= length && orderNumButton < 6) {
                 var contentWord = document.getElementsByClassName("foods-status" + orderNumButton);
                 contentWord[0].innerHTML = ""
                 contentWord[1].innerHTML = ""
@@ -348,18 +348,18 @@ function foodChange() {
         if (flag == true) {
             orderFlagNum++;
         }
-        
+
     }
     let confirmButton = document.getElementById("food-confirm-button"); // 增加界面按钮
 
-    confirmButton.setAttribute("onclick","foodConfirm()");
+    confirmButton.setAttribute("onclick", "foodConfirm()");
 
-    if(orderFlagNum == 1) {
+    if (orderFlagNum == 1) {
         c.style.opacity = "1";
         c.style.zIndex = "9";
         sidebar.style.filter = "blur(12px)";
         container.style.filter = "blur(12px)";
-    } else if(orderFlagNum < 1){
+    } else if (orderFlagNum < 1) {
         alert("请至少选择一个");
     } else {
         alert("请不要多选")
@@ -383,14 +383,14 @@ function foodConfirm() {
     var Changedesc = b[2].value;
     var Changetypename = b[3].value;
     var Changetypeid = b[4].options[b[4].selectedIndex].value;
-    
+
     for (let i = 0; i < a.length; i++) {
         var flag = a[i].checked;
         if (flag == true) {
             foodId = a[i].name;
             break;
         }
-        
+
     }
 
 
@@ -405,7 +405,7 @@ function foodConfirm() {
             typeid: Changetypeid,
             _id: foodId,
 
-        }, 
+        },
         dataType: "json",
         success: function (result) {
 
@@ -424,9 +424,9 @@ function foodConfirm() {
     c.style.zIndex = "-1";
     orderFlagNum = 0;
 
-    setTimeout(function(){
-        
-    },100);
+    setTimeout(function () {
+
+    }, 100);
 
     sidebar.style.filter = "blur(0px)";
     container.style.filter = "blur(0px)";

@@ -1,0 +1,145 @@
+.setting-page {
+  height: calc(100% - 108px);
+  width: 96%;
+  margin: 5px auto 0;
+  background-color: white;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.setting-page #setting {
+  width: 80%;
+  height: 80%;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+}
+.setting-page #setting::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background-color: rgba(167, 167, 167, 0.6470588235);
+  width: 70%;
+  top: 40px;
+}
+.setting-page #setting #style-container {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  margin-top: 30px;
+  display: flex;
+}
+.setting-page #setting #style-container .style-choose {
+  width: 30%;
+  height: 100%;
+  margin-right: 50px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+.setting-page #setting #style-container .style-choose svg {
+  transition: all 0.5s ease-out;
+}
+.setting-page #setting #style-container .style-choose:hover {
+  background-color: rgba(235, 235, 235, 0.481);
+}
+.setting-page #setting #style-container .style-choose:hover svg {
+  transform: rotate(360deg);
+}
+.setting-page #setting #style-container .style-choose:nth-child(2) .banner::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  left: -10px;
+  background-color: gray;
+  bottom: -10px;
+}
+.setting-page #setting #style-container .style-choose .banner {
+  display: flex;
+  margin: 10px;
+  width: 100%;
+  position: relative;
+}
+.setting-page #setting #style-container .style-choose .banner::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  left: -10px;
+  background-color: rgb(102, 173, 173);
+  bottom: -10px;
+}
+.setting-page #setting #style-container .style-choose .svg-container {
+  width: 90%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.setting-page #setting #style-container .style-choose p {
+  font-size: 16px;
+  margin-left: 5px;
+}
+.setting-page #setting #style-container .style-choose:nth-child(1) {
+  border-color: rgb(102, 173, 173);
+}
+.setting-page #setting #style-container .style-choose:nth-child(2) {
+  border-color: gray;
+}
+.setting-page #setting #color-container {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  margin-top: 40px;
+  position: relative;
+  display: flex;
+}
+.setting-page #setting #color-container p::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background-color: rgba(167, 167, 167, 0.6470588235);
+  width: 70%;
+  top: 40px;
+  left: 0px;
+}
+.setting-page #setting #color-container #theme {
+  width: 65%;
+  height: 70%;
+  border: 1px solid rgba(167, 167, 167, 0.6470588235);
+  border-radius: 10px;
+  top: 80px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.setting-page #setting #color-container #theme .theme-choice {
+  width: 40%;
+  height: 30%;
+  margin-left: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.setting-page #setting #color-container #theme .theme-choice:nth-child(1) {
+  background-color: rgb(200, 225, 245);
+}
+.setting-page #setting #color-container #theme .theme-choice:nth-child(1):hover {
+  border: 2px solid rgba(184, 184, 184, 0.6470588235);
+}
+.setting-page #setting #color-container #theme .theme-choice:nth-child(2) {
+  background-color: rgb(137, 137, 137);
+}
+.setting-page #setting #color-container #theme .theme-choice:nth-child(2):hover {
+  border: 2px solid rgba(42, 125, 192, 0.6470588235);
+}/*# sourceMappingURL=setting.css.map */

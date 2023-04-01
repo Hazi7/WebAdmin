@@ -1,0 +1,208 @@
+.alert {
+    width: 100%;
+    background-color: rgba(230, 230, 230, 0.908);
+    height: 100vh;
+    z-index: -1;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+
+    #exit-alert {
+        @extend #remove-alert;
+
+    }
+
+    .success{
+        #button-container {
+            display: none !important;
+        }
+    }
+
+    #add-operation-success {
+        opacity: 0;
+        z-index: -1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 30%;
+        height: 30%;
+        border-radius: 10px;
+        background-color: white;
+        display: none;
+
+        svg {
+            display: none;
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: 600;
+        }
+    }
+
+    #add-alert {
+        background-color: transparent;
+        width: 50%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .add-input-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 13%;
+            flex-direction: column;
+            transition: all 0.5s ease-in-out;
+
+            &:nth-child(4) {
+                .add-input {
+                    box-sizing: content-box;
+                    border-width: 2px;
+                }
+            }
+
+            &:nth-child(1) {
+                margin-top: 50px;
+            }
+
+            &:hover {
+                span{
+                    top: 0;
+                    font-size: 16px;
+                }
+
+                .add-input {
+                    border-color: rgb(59, 89, 66);
+                }
+            }
+
+            span {
+                align-self: flex-start;
+                margin-left: 20%;
+                position: relative;
+                font-size: 20px;
+                top: 30px;
+                color: rgb(97, 97, 97);
+                transition: all 0.5s ease-in-out;
+            }
+
+            .add-input {
+                
+                width: 60%;
+                height: 100%;
+                outline: none;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                text-align: center;
+                font-size: 18px;
+                background-color: transparent;
+                
+                &::placeholder {
+                    opacity: 0.5;
+                    font-size: 16px;
+                }
+
+
+            }
+        }
+
+        #add-buttons {
+            margin-top: 35px;
+            display: flex;
+            width: 40%;
+            height: 20%;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            
+
+            .add-button {
+                box-sizing: border-box;
+                width: 40%;
+                height: 30%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 10px;
+                border-radius: 5px;
+                border: 2px solid gray;
+
+                &:hover {
+                    border: 2px solid green;
+                }
+
+                &:nth-child(2) {
+                    &:hover {
+                        border: 2px solid rgb(177, 47, 47);
+                    }
+                }
+            }
+        }
+
+    }
+
+
+    #remove-alert {
+        background-color: white;
+        width: 30%;
+        height: 40%;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        opacity: 1;
+        flex-direction: column;
+        justify-content: center;
+
+
+        p {
+            font-size: 28px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        #button-container {
+            display: flex;
+            width: 40%;
+            height: 20%;
+            margin-top: 20px;
+
+            .remove-alert-button {
+                width: 50%;
+                height: 60%;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid #456454;
+                margin-right: 10px;
+                border-radius: 10px;
+                cursor: pointer;
+
+                &:nth-child(1) {
+                    &:hover {
+                        color: rgb(24, 93, 61);
+                        border-color: rgb(24, 93, 61);
+                    }
+                }
+
+                &:nth-child(2) {
+                    &:hover {
+                        color: rgb(182, 93, 52);
+                        border-color: rgb(182, 93, 52);
+                    }
+                }
+            }
+        }
+
+
+    }
+}

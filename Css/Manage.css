@@ -1,136 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-#root {
-  height: 100vh;
-  display: flex;
-  flex-basis: 100%;
-}
-#root #sidebar {
-  height: 100vh;
-  flex-grow: 1;
-  background-color: #e8ecf0;
-  position: relative;
-}
-#root #sidebar #sidebar-content {
-  width: 90%;
-  height: 95%;
-  min-width: 190px;
-  position: relative;
-  background-color: rgba(253, 253, 253, 0.681);
-  z-index: 9;
-  top: 2%;
-  left: 5%;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#root #sidebar #sidebar-content svg {
-  z-index: 120;
-  position: absolute;
-  top: 5%;
-  left: 5%;
-}
-#root #sidebar #sidebar-content span {
-  position: relative;
-  font-size: 80px;
-  -webkit-text-stroke: 2px silver;
-  color: transparent;
-  writing-mode: vertical-rl;
-  opacity: 0.5;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-#root #sidebar #sidebar-content #select-content {
-  width: 90%;
-  position: absolute;
-}
-#root #sidebar #sidebar-content #select-content .select {
-  height: 50px;
-  width: 100%;
-  border-width: 1px;
-  border-style: solid;
-  margin-bottom: 2px;
-  border-color: #c2c1c1;
-  border-radius: 5px;
-  transition: all 0.5s ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #5f5f5f;
-}
-#root #sidebar #sidebar-content #select-content .select:hover {
-  cursor: pointer;
-  background-color: #d0d0d0;
-  color: #070707;
-}
-#root #container {
-  height: 100%;
-  flex-grow: 6;
-  background-color: #e8ecf0;
-}
-#root #container #banner {
-  height: 100px;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-#root #container #banner span {
-  display: inline-block;
-  font-size: 18px;
-  color: rgb(80, 79, 79);
-  position: relative;
-  left: 5px;
-  bottom: 4px;
-}
-#root #container #banner #user {
-  position: absolute;
-  right: 100px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  width: 150px;
-  height: 50px;
-  cursor: pointer;
-}
-#root #container #banner #user svg:nth-of-type(2) {
-  margin-left: 10px;
-}
-#root #container #banner #user p {
-  display: inline-block;
-  font-size: 14px;
-  color: rgb(80, 79, 79);
-  position: relative;
-  bottom: 6px;
-  left: 5px;
-}
-#root #container #banner #menu {
-  width: 115px;
-  height: 50px;
-  position: absolute;
-  right: 135px;
-  box-sizing: border-box;
-  top: 60px;
-  background-color: #ffffff;
-  border-radius: 3px;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
-#root #container #banner #menu .menu-information {
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  border: 1px #cacaca solid;
-  cursor: pointer;
-}
-#root #container #banner #menu .menu-information:hover {
-  border: 2px #8396a8 solid;
-}
-#root #container #content {
+.control-page {
   background-color: white;
   height: calc(100% - 100px);
   border-radius: 5px;
@@ -139,7 +7,7 @@
   transition: all 0.5s ease-in-out;
   display: none;
 }
-#root #container #content #main-container {
+.control-page #main-container {
   width: 90%;
   height: 70%;
   margin-left: auto;
@@ -148,12 +16,12 @@
   flex-direction: column;
   position: relative;
 }
-#root #container #content #buttons {
+.control-page #buttons {
   display: flex;
   width: 100%;
   margin-top: 10%;
 }
-#root #container #content #buttons .button {
+.control-page #buttons .button {
   width: 80px;
   box-sizing: border-box;
   height: 30px;
@@ -170,16 +38,16 @@
   font-size: 14px;
   cursor: pointer;
 }
-#root #container #content #buttons .button:nth-child(1) {
+.control-page #buttons .button:nth-child(1) {
   margin-left: 0px;
 }
-#root #container #content #buttons .button:hover {
+.control-page #buttons .button:hover {
   border-width: 3px;
   border-style: solid;
   border-color: #a3d3ff;
   color: #c2c1c1;
 }
-#root #container #content #buttons .button:nth-of-type(2) {
+.control-page #buttons .button:nth-of-type(2) {
   width: 80px;
   height: 30px;
   color: #bd5533;
@@ -191,7 +59,7 @@
   align-items: center;
   border-radius: 3px;
 }
-#root #container #content #buttons #search {
+.control-page #buttons #search {
   width: 60%;
   height: 30px;
   margin-left: 100px;
@@ -202,7 +70,7 @@
   border-style: solid;
   border-color: #5f5f5f;
 }
-#root #container #content #buttons #search #input-search {
+.control-page #buttons #search #input-search {
   height: 100%;
   width: 85%;
   position: absolute;
@@ -210,7 +78,7 @@
   border: none;
   margin-left: 10px;
 }
-#root #container #content #buttons #search #button {
+.control-page #buttons #search #button {
   cursor: pointer;
   position: absolute;
   width: 10%;
@@ -223,7 +91,7 @@
   align-items: center;
   font-size: 14px;
 }
-#root #container #content #information {
+.control-page #information {
   list-style: none;
   display: flex;
   width: 100%;
@@ -239,21 +107,21 @@
   border-color: #c2c1c1;
   margin-top: 5%;
 }
-#root #container #content #information li {
+.control-page #information li {
   width: 15%;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#root #container #content #members {
+.control-page #members {
   list-style: none;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#root #container #content #members .member {
+.control-page #members .member {
   list-style: none;
   display: flex;
   width: 100%;
@@ -270,11 +138,11 @@
   justify-content: center;
   align-items: center;
 }
-#root #container #content #members .member .input {
+.control-page #members .member .input {
   position: absolute;
   left: 10px;
 }
-#root #container #content #members .member .content {
+.control-page #members .member .content {
   display: flex;
   width: 20%;
   height: 50px;
@@ -284,32 +152,41 @@
   align-items: center;
   text-align: center;
 }
-#root #container #content #change-button {
+.control-page #change-button {
   display: flex;
   margin-top: 50px;
   position: relative;
 }
-#root #container #content #change-button div {
+.control-page #change-button div {
   height: 100%;
   position: absolute;
   right: 0;
   display: flex;
   width: 200px;
 }
-#root #container #content #change-button div .button {
+.control-page #change-button div .button {
   width: 20px;
   height: 20px;
-  background-color: #1890ff;
+  box-sizing: border-box;
+  background-color: rgba(119, 119, 119, 0.4352941176);
   margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
+  cursor: pointer;
 }
-#root #container #content #change-button div .button:nth-child(1) {
+.control-page #change-button div .button:hover {
+  border: 2px solid #1890ff;
+}
+.control-page #change-button div .button:nth-child(1) {
   right: 60px;
 }
-#root #container #content #change-button div .button:nth-child(2) {
+.control-page #change-button div .button:nth-child(2) {
   right: 30px;
 }
-#root #change-information {
+
+#change-information {
   width: 600px;
   height: 400px;
   position: absolute;
@@ -323,7 +200,7 @@
   opacity: 0;
   transition: all 0.5s ease-in-out;
 }
-#root #change-information .information {
+#change-information .information {
   width: 80%;
   height: 40px;
   display: flex;
@@ -332,11 +209,11 @@
   justify-content: center;
   margin-top: 30px;
 }
-#root #change-information .information .input1 {
+#change-information .information .input1 {
   width: 100%;
   height: 100%;
 }
-#root #change-information #button-container {
+#change-information #button-container {
   width: 200px;
   height: 40px;
   background-color: #1890ff;
@@ -346,7 +223,7 @@
   top: 40px;
   display: flex;
 }
-#root #change-information #button-container .button {
+#change-information #button-container .button {
   width: 50%;
   height: 100%;
   display: flex;
@@ -357,9 +234,9 @@
           user-select: none;
   cursor: pointer;
 }
-#root #change-information #button-container .button:nth-child(1) {
+#change-information #button-container .button:nth-child(1) {
   background-color: #71e2a3;
 }
-#root #change-information #button-container .button:nth-child(2) {
+#change-information #button-container .button:nth-child(2) {
   background-color: #a3d3ff;
 }/*# sourceMappingURL=Manage.css.map */
